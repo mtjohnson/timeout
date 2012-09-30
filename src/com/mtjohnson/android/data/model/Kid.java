@@ -1,5 +1,6 @@
 package com.mtjohnson.android.data.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Kid {
@@ -29,5 +30,19 @@ public class Kid {
 
     public int getId() {
         return this.id;
+    }
+
+    public int getDefaultMinutes() {
+        Calendar then = Calendar.getInstance();
+        then.clear();
+        then.setTime(birthDate);
+        Calendar now = Calendar.getInstance();
+        Calendar clone = (Calendar) then.clone();
+        int years = -1;
+        while (!clone.after(now)) {
+            clone.add(Calendar.YEAR, 1);
+            years++;
+        }
+        return years;
     }
 }

@@ -9,8 +9,8 @@ import android.provider.BaseColumns;
 import com.mtjohnson.android.data.model.Kid;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class TimeoutData extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "timeout.db";
@@ -52,10 +52,10 @@ public class TimeoutData extends SQLiteOpenHelper {
         db.insertOrThrow(TABLE_NAME, null, values);
     }
 
-    public Collection<Kid> getKids() {
-        Collection<Kid> kids = new ArrayList<Kid>();
+    public List<Kid> getKids() {
+        List<Kid> kids = new ArrayList<Kid>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME, COLUMNS, "%", null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
         while (cursor.moveToNext()) {
             Kid kid = new Kid();
             kid.setId(cursor.getInt(0));
