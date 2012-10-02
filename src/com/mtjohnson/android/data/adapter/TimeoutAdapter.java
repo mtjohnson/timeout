@@ -1,12 +1,16 @@
 package com.mtjohnson.android.data.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.mtjohnson.R;
+import com.mtjohnson.android.activity.TimeoutActivity;
 import com.mtjohnson.android.data.model.Kid;
 
 import java.util.List;
@@ -43,7 +47,7 @@ public class TimeoutAdapter extends BaseAdapter {
             LayoutInflater vi = LayoutInflater.from(context);
             v = vi.inflate(R.layout.row, null);
         }
-        Kid kid = kids.get(position);
+        final Kid kid = kids.get(position);
         if (kid != null) {
             TextView tt = (TextView) v.findViewById(R.id.toptext);
             TextView bt = (TextView) v.findViewById(R.id.bottomtext);
@@ -54,14 +58,26 @@ public class TimeoutAdapter extends BaseAdapter {
                 bt.setText("Minutes: " + kid.getDefaultMinutes());
             }
             View view = v.findViewById(R.id.icon2);
-            view.setOnClickListener(
-                    new View.OnClickListener() {
+            view.setOnTouchListener(
+                    new View.OnTouchListener() {
                         @Override
-                        public void onClick(View view) {
-                            System.out.println("test");
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN)
+                                view.setBackgroundColor(Color.GRAY);
+                            else
+                                view.setBackgroundColor(Color.TRANSPARENT);
+                            return true;
                         }
                     }
             );
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, TimeoutActivity.class);
+                    intent.putExtra("minutes", kid.getDefaultMinutes());
+                    context.startActivity(intent);
+                }
+            });
         }
         return v;
     }
