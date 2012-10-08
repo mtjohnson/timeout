@@ -13,5 +13,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".android.activity.TimeoutActivity"/>
+        <activity android:name=".android.activity.TimeoutActivity"/>
+        <activity android:name=".android.activity.AddKidActivity"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".android.activity.EditKidActivity"
+                  android:windowSoftInputMode="stateHidden"/>
     </application>
 </manifest> 

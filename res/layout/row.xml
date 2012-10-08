@@ -28,7 +28,7 @@
             android:layout_alignParentLeft="true"
             android:src="@drawable/ref"/>
     <ImageView
-            android:id="@+id/icon2"
+            android:id="@+id/edit"
             android:layout_width="48px"
             android:layout_height="48px"
             android:layout_alignParentTop="true"

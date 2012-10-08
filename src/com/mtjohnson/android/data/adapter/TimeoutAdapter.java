@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.mtjohnson.R;
+import com.mtjohnson.android.activity.EditKidActivity;
 import com.mtjohnson.android.activity.TimeoutActivity;
 import com.mtjohnson.android.data.model.Kid;
 
@@ -57,7 +58,7 @@ public class TimeoutAdapter extends BaseAdapter {
             if (bt != null) {
                 bt.setText("Minutes: " + kid.getDefaultMinutes());
             }
-            View view = v.findViewById(R.id.icon2);
+            View view = v.findViewById(R.id.edit);
             view.setOnTouchListener(
                     new View.OnTouchListener() {
                         @Override
@@ -66,10 +67,18 @@ public class TimeoutAdapter extends BaseAdapter {
                                 view.setBackgroundColor(Color.GRAY);
                             else
                                 view.setBackgroundColor(Color.TRANSPARENT);
-                            return true;
+                            return false;
                         }
                     }
             );
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, EditKidActivity.class);
+                    intent.putExtra("kid_id", kid.getId());
+                    context.startActivity(intent);
+                }
+            });
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

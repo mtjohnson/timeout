@@ -12,4 +12,19 @@
             android:textSize="64sp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
+    <Button android:id="@+id/pause"
+            android:text="Pause"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeoutCountdown"
+            android:layout_marginLeft="90dp"
+            />
+    <Button android:id="@+id/restart"
+            android:text="Restart"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/pause"
+            android:layout_below="@id/timeoutCountdown"
+            android:layout_centerHorizontal="true"
+            />
 </RelativeLayout>
